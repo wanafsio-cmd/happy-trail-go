@@ -9,80 +9,73 @@ All colors MUST be HSL.
 @layer base {
 :root {
     --background: 0 0% 100%;
-    --foreground: 174 52% 21%;
+    --foreground: 220 40% 13%;
 
     --card: 0 0% 100%;
-    --card-foreground: 174 52% 21%;
+    --card-foreground: 220 40% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 174 52% 21%;
+    --popover-foreground: 220 40% 13%;
 
-    --primary: 174 52% 21%;
+    --primary: 220 50% 18%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 38 92% 50%;
+    --secondary: 40 90% 50%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 174 20% 95%;
-    --muted-foreground: 174 20% 45%;
+    --muted: 220 20% 95%;
+    --muted-foreground: 220 15% 45%;
 
-    --accent: 38 92% 50%;
+    --accent: 40 90% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 174 20% 88%;
-    --input: 174 20% 88%;
-    --ring: 174 52% 21%;
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 220 50% 18%;
 
     --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
 .dark {
-    --background: 174 52% 15%;
+    --background: 220 50% 12%;
     --foreground: 0 0% 98%;
 
-    --card: 174 52% 18%;
+    --card: 220 50% 15%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 174 52% 18%;
+    --popover: 220 50% 15%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 174 52% 21%;
+    --primary: 220 50% 18%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 38 92% 50%;
+    --secondary: 40 90% 50%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 174 30% 25%;
-    --muted-foreground: 174 15% 70%;
+    --muted: 220 30% 25%;
+    --muted-foreground: 220 15% 70%;
 
-    --accent: 38 92% 50%;
+    --accent: 40 90% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 174 30% 30%;
-    --input: 174 30% 30%;
-    --ring: 38 92% 50%;
+    --border: 220 30% 30%;
+    --input: 220 30% 30%;
+    --ring: 40 90% 50%;
   }
 }
 
@@ -128,10 +121,10 @@ All colors MUST be HSL.
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.4);
+    box-shadow: 0 0 0 0 hsla(40, 90%, 50%, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(20, 184, 166, 0);
+    box-shadow: 0 0 0 10px hsla(40, 90%, 50%, 0);
   }
 }
 
