@@ -467,7 +467,7 @@ export function StaffPerformanceReport() {
 
           {/* Footer */}
           <div className="mt-6 pt-4 border-t text-center text-xs text-gray-500">
-            <p>এই রিপোর্টটি Apple Point সিস্টেম থেকে স্বয়ংক্রিয়ভাবে তৈরি হয়েছে</p>
+            <p>এই রিপোর্টটি BIG BOSS MOBILE STATION সিস্টেম থেকে স্বয়ংক্রিয়ভাবে তৈরি হয়েছে</p>
           </div>
         </div>
       </div>
