@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { z } from "zod";
-import shopLogo from "@/assets/big-boss-logo.png";
+import shopLogo from "@/assets/334aa3a3-8497-400f-b941-84bfec2d732e.png";
 import { ActivityLogger } from "@/hooks/useActivityLog";
 const authSchema = z.object({
   email: z.string().email({
