@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ScanBarcode } from "lucide-react";
-import appleLogo from "@/assets/apple-point-logo.svg";
+import shopLogo from "@/assets/big-boss-logo.png";
 
 interface POSHeaderProps {
   searchTerm: string;
