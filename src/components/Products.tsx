@@ -371,7 +371,7 @@ export function Products() {
       </head>
       <body>
         <div class="header">
-          <h1>🍎 Apple Point</h1>
+          <h1>👑 BIG BOSS MOBILE STATION</h1>
           <p>প্রোডাক্ট ইনভেন্টরি তালিকা</p>
           <p style="font-size: 10px; margin-top: 5px;">তারিখ: ${new Date().toLocaleDateString('bn-BD')}</p>
         </div>
