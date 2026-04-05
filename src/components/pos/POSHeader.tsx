@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ScanBarcode } from "lucide-react";
-import appleLogo from "@/assets/apple-point-logo.svg";
+import shopLogo from "@/assets/big-boss-logo.png";
 
 interface POSHeaderProps {
   searchTerm: string;
@@ -32,7 +32,7 @@ export function POSHeader({
             বিক্রয় প্রক্রিয়া ও লেনদেন ব্যবস্থাপনা
           </p>
         </div>
-        <img src={appleLogo} alt="Apple Point" className="w-16 h-16 lg:w-20 lg:h-20" />
+        <img src={shopLogo} alt="BIG BOSS MOBILE STATION" className="w-16 h-16 lg:w-20 lg:h-20" />
       </div>
 
       <div className="flex gap-2">

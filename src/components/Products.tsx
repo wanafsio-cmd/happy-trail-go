@@ -346,7 +346,7 @@ export function Products() {
       <!DOCTYPE html>
       <html>
       <head>
-        <title>Apple Point - প্রোডাক্ট তালিকা</title>
+        <title>BIG BOSS MOBILE STATION - প্রোডাক্ট তালিকা</title>
         <style>
           * { margin: 0; padding: 0; box-sizing: border-box; }
           body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; font-size: 11px; }
@@ -371,7 +371,7 @@ export function Products() {
       </head>
       <body>
         <div class="header">
-          <h1>🍎 Apple Point</h1>
+          <h1>👑 BIG BOSS MOBILE STATION</h1>
           <p>প্রোডাক্ট ইনভেন্টরি তালিকা</p>
           <p style="font-size: 10px; margin-top: 5px;">তারিখ: ${new Date().toLocaleDateString('bn-BD')}</p>
         </div>
@@ -429,7 +429,7 @@ export function Products() {
         </table>
 
         <div class="footer">
-          <p>Apple Point - Shop Management System</p>
+          <p>BIG BOSS MOBILE STATION - Shop Management System</p>
           <p>Generated on ${new Date().toLocaleString('bn-BD')}</p>
         </div>
       </body>

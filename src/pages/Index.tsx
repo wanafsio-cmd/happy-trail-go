@@ -14,7 +14,7 @@ import { Returns } from "@/components/Returns";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import appleLogo from "@/assets/apple-point-logo.svg";
+import shopLogo from "@/assets/big-boss-logo.png";
 import { FloatingActionButton } from "@/components/FloatingActionButton";
 import { useUserRole } from "@/hooks/useUserRole";
 import { ActivityLogger } from "@/hooks/useActivityLog";
@@ -171,10 +171,10 @@ export default function Index({ user }: IndexProps) {
       <aside className="hidden lg:block fixed left-0 top-0 h-screen w-64 bg-primary border-r border-border/20 shadow-xl z-40">
         <div className="flex flex-col h-full p-6">
           <div className="flex items-center justify-center gap-3 mb-8 pb-6 border-b border-white/20">
-            <img src={appleLogo} alt="Apple Point" className="w-20 h-20" />
+            <img src={shopLogo} alt="BIG BOSS MOBILE STATION" className="w-16 h-16" />
             <div>
-              <h1 className="text-xl font-bold text-white">Apple Point</h1>
-              <p className="text-xs text-white/80">Shop Management</p>
+              <h1 className="text-lg font-bold text-white leading-tight">BIG BOSS</h1>
+              <p className="text-xs text-white/80">Mobile Station</p>
             </div>
           </div>
           
@@ -221,11 +221,11 @@ export default function Index({ user }: IndexProps) {
         <div className="flex items-center justify-between h-16 px-4">
           <div className="flex items-center space-x-3">
             <div className="w-14 h-14 rounded-xl flex items-center justify-center animate-fade-in">
-              <img src={appleLogo} alt="Apple Point" className="w-12 h-12 animate-scale-in" />
+              <img src={shopLogo} alt="BIG BOSS MOBILE STATION" className="w-12 h-12 animate-scale-in" />
             </div>
             <div>
-              <span className="text-base font-bold text-white block leading-tight">Apple Point</span>
-              <span className="text-xs text-white/70">Shop Management</span>
+              <span className="text-base font-bold text-white block leading-tight">BIG BOSS</span>
+              <span className="text-xs text-white/70">Mobile Station</span>
             </div>
           </div>
           <Button

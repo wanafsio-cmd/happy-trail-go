@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
-import appleLogo from "@/assets/apple-point-logo.svg";
+import shopLogo from "@/assets/big-boss-logo.png";
 import { format, startOfDay, endOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -477,7 +477,7 @@ export function Settings() {
             <h1 className="text-3xl font-bold text-foreground">Settings</h1>
             <p className="text-muted-foreground mt-1">Manage your account and system data</p>
           </div>
-          <img src={appleLogo} alt="Apple Point" className="w-20 h-20" />
+          <img src={shopLogo} alt="BIG BOSS MOBILE STATION" className="w-20 h-20" />
         </div>
       </div>
 
@@ -886,7 +886,7 @@ export function Settings() {
       <Card className="p-6">
         <h2 className="text-xl font-semibold mb-4 text-foreground">ℹ️ About</h2>
         <div className="space-y-2 text-sm text-muted-foreground">
-          <p className="font-semibold text-lg text-foreground">Apple Point</p>
+          <p className="font-semibold text-lg text-foreground">BIG BOSS MOBILE STATION</p>
           <p>Shop Management System v1.0</p>
           <p>A comprehensive shop management solution for mobile phone businesses</p>
           <p className="pt-2 text-xs">

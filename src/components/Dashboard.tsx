@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import appleLogo from "@/assets/apple-point-logo.svg";
+import shopLogo from "@/assets/big-boss-logo.png";
 import { MobileDashboardWidget } from "./MobileDashboardWidget";
 
 interface DashboardProps {
@@ -129,7 +129,7 @@ export function Dashboard({ onNavigateToPOS, onNavigateToProducts }: DashboardPr
             <h1 className="text-3xl font-bold text-foreground">ড্যাশবোর্ড</h1>
             <p className="text-muted-foreground mt-1">স্বাগতম! আপনার ব্যবসার সারসংক্ষেপ দেখুন।</p>
           </div>
-          <img src={appleLogo} alt="Apple Point" className="w-20 h-20" />
+          <img src={shopLogo} alt="BIG BOSS MOBILE STATION" className="w-20 h-20" />
         </div>
       </div>
 

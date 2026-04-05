@@ -50,7 +50,7 @@ export function InvoiceModal({ isOpen, sale, onClose }: InvoiceModalProps) {
         <div ref={componentRef} className="p-8">
           {/* Company Header */}
           <div className="text-center mb-8 border-b pb-4">
-            <h1 className="text-3xl font-bold text-primary mb-2">🍎 Apple Point</h1>
+            <h1 className="text-3xl font-bold text-primary mb-2">👑 BIG BOSS MOBILE STATION</h1>
             <p className="text-sm text-muted-foreground">মোবাইল শপ ম্যানেজমেন্ট সিস্টেম</p>
             <p className="text-xs text-muted-foreground mt-1">ঠিকানা: আপনার দোকানের ঠিকানা</p>
           </div>
@@ -117,7 +117,7 @@ export function InvoiceModal({ isOpen, sale, onClose }: InvoiceModalProps) {
           {/* Footer */}
           <div className="text-center border-t pt-4 text-sm text-muted-foreground">
             <p>ধন্যবাদ আপনার ক্রয়ের জন্য!</p>
-            <p className="mt-2">Apple Point - আপনার বিশ্বস্ত মোবাইল শপ</p>
+            <p className="mt-2">BIG BOSS MOBILE STATION - আপনার বিশ্বস্ত মোবাইল শপ</p>
           </div>
         </div>
       </div>
