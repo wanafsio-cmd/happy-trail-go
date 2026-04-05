@@ -117,7 +117,7 @@ export function InvoiceModal({ isOpen, sale, onClose }: InvoiceModalProps) {
           {/* Footer */}
           <div className="text-center border-t pt-4 text-sm text-muted-foreground">
             <p>ধন্যবাদ আপনার ক্রয়ের জন্য!</p>
-            <p className="mt-2">Apple Point - আপনার বিশ্বস্ত মোবাইল শপ</p>
+            <p className="mt-2">BIG BOSS MOBILE STATION - আপনার বিশ্বস্ত মোবাইল শপ</p>
           </div>
         </div>
       </div>
