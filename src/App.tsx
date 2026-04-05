@@ -9,7 +9,7 @@ import type { User } from "@supabase/supabase-js";
 import Auth from "./pages/Auth";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import appleLogo from "@/assets/apple-point-logo.svg";
+import shopLogo from "@/assets/big-boss-logo.png";
 
 const queryClient = new QueryClient();
 
