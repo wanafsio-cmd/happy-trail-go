@@ -346,7 +346,7 @@ export function Products() {
       <!DOCTYPE html>
       <html>
       <head>
-        <title>Apple Point - প্রোডাক্ট তালিকা</title>
+        <title>BIG BOSS MOBILE STATION - প্রোডাক্ট তালিকা</title>
         <style>
           * { margin: 0; padding: 0; box-sizing: border-box; }
           body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; font-size: 11px; }
