@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { z } from "zod";
-import shopLogo from "@/assets/big-boss-logo.png";
+import shopLogo from "@/assets/334aa3a3-8497-400f-b941-84bfec2d732e.png";
 import { ActivityLogger } from "@/hooks/useActivityLog";
 const authSchema = z.object({
   email: z.string().email({
@@ -83,7 +83,7 @@ export default function Auth() {
       <div className="w-full max-w-md space-y-8 animate-slide-up">
         <div className="text-center">
           <div className="inline-flex items-center justify-center w-48 h-48 rounded-2xl mb-4 shadow-xl animate-fade-in">
-            <img src={shopLogo} alt="BIG BOSS MOBILE STATION" className="w-36 h-36 animate-scale-in" />
+            <img src={shopLogo} alt="BIG BOSS MOBILE STATION" className="w-36 h-36 animate-scale-in object-cover text-xl" />
           </div>
           <h2 className="text-3xl font-bold text-white">BIG BOSS MOBILE STATION</h2>
           <p className="mt-2 text-white/80 text-lg">Shop Management</p>
