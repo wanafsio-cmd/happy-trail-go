@@ -429,7 +429,7 @@ export function Products() {
         </table>
 
         <div class="footer">
-          <p>Apple Point - Shop Management System</p>
+          <p>BIG BOSS MOBILE STATION - Shop Management System</p>
           <p>Generated on ${new Date().toLocaleString('bn-BD')}</p>
         </div>
       </body>

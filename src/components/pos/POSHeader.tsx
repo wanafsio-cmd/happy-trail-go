@@ -32,7 +32,7 @@ export function POSHeader({
             বিক্রয় প্রক্রিয়া ও লেনদেন ব্যবস্থাপনা
           </p>
         </div>
-        <img src={appleLogo} alt="Apple Point" className="w-16 h-16 lg:w-20 lg:h-20" />
+        <img src={shopLogo} alt="BIG BOSS MOBILE STATION" className="w-16 h-16 lg:w-20 lg:h-20" />
       </div>
 
       <div className="flex gap-2">
