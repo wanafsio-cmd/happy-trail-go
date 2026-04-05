@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { z } from "zod";
-import appleLogo from "@/assets/apple-point-logo.svg";
+import shopLogo from "@/assets/big-boss-logo.png";
 import { ActivityLogger } from "@/hooks/useActivityLog";
 const authSchema = z.object({
   email: z.string().email({
