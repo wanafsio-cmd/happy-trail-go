@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
-import shopLogo from "@/assets/big-boss-logo.png";
+import { useShopSettings } from "@/hooks/useShopSettings";
 import { format, startOfDay, endOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -17,6 +17,18 @@ import { StockSyncCheck } from "@/components/StockSyncCheck";
 import { StaffPerformanceReport } from "@/components/StaffPerformanceReport";
 import { useUserRole } from "@/hooks/useUserRole";
 import { ActivityLogger } from "@/hooks/useActivityLog";
+import { BrandingSettings } from "@/components/BrandingSettings";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import {
   AlertDialog,
   AlertDialogAction,
