@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ScanBarcode } from "lucide-react";
-import shopLogo from "@/assets/big-boss-logo.png";
+import { useShopSettings } from "@/hooks/useShopSettings";
 
 interface POSHeaderProps {
   searchTerm: string;
@@ -23,6 +23,8 @@ export function POSHeader({
   onShowOutOfStockChange,
   onOpenScanner,
 }: POSHeaderProps) {
+  const { settings, logoSrc } = useShopSettings();
+
   return (
     <div className="sticky top-0 z-10 bg-white dark:bg-gray-950 border-b border-border p-4 lg:pb-4 space-y-3 lg:space-y-4">
       <div className="flex items-start justify-between">
@@ -32,7 +34,7 @@ export function POSHeader({
             বিক্রয় প্রক্রিয়া ও লেনদেন ব্যবস্থাপনা
           </p>
         </div>
-        <img src={shopLogo} alt="BIG BOSS MOBILE STATION" className="w-16 h-16 lg:w-20 lg:h-20" />
+        <img src={logoSrc} alt={settings.shop_name} className="w-16 h-16 lg:w-20 lg:h-20" />
       </div>
 
       <div className="flex gap-2">
