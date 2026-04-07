@@ -891,14 +891,17 @@ export function Settings() {
       <Card className="p-6">
         <h2 className="text-xl font-semibold mb-4 text-foreground">ℹ️ About</h2>
         <div className="space-y-2 text-sm text-muted-foreground">
-          <p className="font-semibold text-lg text-foreground">BIG BOSS MOBILE STATION</p>
+          <p className="font-semibold text-lg text-foreground">{settings.shop_name}</p>
           <p>Shop Management System v1.0</p>
           <p>A comprehensive shop management solution for mobile phone businesses</p>
           <p className="pt-2 text-xs">
             Features: Products, Categories, POS, Customers, Suppliers, Purchase Orders, Reports, Backup & Restore
           </p>
         </div>
-        </Card>
+      </Card>
+
+      {/* Hidden Branding Settings - unlocked by typing 331548 */}
+      {showBranding && isAdmin && <BrandingSettings />}
       </div>
     </div>
   );
