@@ -14,7 +14,7 @@ import { Returns } from "@/components/Returns";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import shopLogo from "@/assets/big-boss-logo.png";
+import { useShopSettings } from "@/hooks/useShopSettings";
 import { FloatingActionButton } from "@/components/FloatingActionButton";
 import { useUserRole } from "@/hooks/useUserRole";
 import { ActivityLogger } from "@/hooks/useActivityLog";
