@@ -36,6 +36,30 @@ export function Settings() {
   const { isAdmin } = useUserRole();
   const [showBranding, setShowBranding] = useState(false);
   const [secretBuffer, setSecretBuffer] = useState("");
+
+  // Secret code listener to unlock branding settings
+  useEffect(() => {
+    const SECRET_CODE = "331548";
+    let buffer = "";
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore if user is typing in an input/textarea
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+      
+      buffer += e.key;
+      if (buffer.length > SECRET_CODE.length) {
+        buffer = buffer.slice(-SECRET_CODE.length);
+      }
+      if (buffer === SECRET_CODE) {
+        setShowBranding(true);
+        toast.success("🔐 ব্র্যান্ডিং সেটিংস আনলক হয়েছে!");
+        buffer = "";
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   const [isBackingUp, setIsBackingUp] = useState(false);
   const [isRestoring, setIsRestoring] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
