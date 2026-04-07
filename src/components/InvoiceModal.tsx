@@ -10,6 +10,7 @@ interface InvoiceModalProps {
 }
 
 export function InvoiceModal({ isOpen, sale, onClose }: InvoiceModalProps) {
+  const { settings } = useShopSettings();
   const componentRef = useRef<HTMLDivElement>(null);
 
   const handlePrint = useReactToPrint({
