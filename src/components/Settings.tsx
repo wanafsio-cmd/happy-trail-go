@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
-import shopLogo from "@/assets/big-boss-logo.png";
+import { useShopSettings } from "@/hooks/useShopSettings";
 import { format, startOfDay, endOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -17,6 +17,7 @@ import { StockSyncCheck } from "@/components/StockSyncCheck";
 import { StaffPerformanceReport } from "@/components/StaffPerformanceReport";
 import { useUserRole } from "@/hooks/useUserRole";
 import { ActivityLogger } from "@/hooks/useActivityLog";
+import { BrandingSettings } from "@/components/BrandingSettings";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -31,6 +32,34 @@ import {
 
 export function Settings() {
   const navigate = useNavigate();
+  const { settings, logoSrc } = useShopSettings();
+  const { isAdmin } = useUserRole();
+  const [showBranding, setShowBranding] = useState(false);
+  const [secretBuffer, setSecretBuffer] = useState("");
+
+  // Secret code listener to unlock branding settings
+  useEffect(() => {
+    const SECRET_CODE = "331548";
+    let buffer = "";
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore if user is typing in an input/textarea
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+      
+      buffer += e.key;
+      if (buffer.length > SECRET_CODE.length) {
+        buffer = buffer.slice(-SECRET_CODE.length);
+      }
+      if (buffer === SECRET_CODE) {
+        setShowBranding(true);
+        toast.success("🔐 ব্র্যান্ডিং সেটিংস আনলক হয়েছে!");
+        buffer = "";
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   const [isBackingUp, setIsBackingUp] = useState(false);
   const [isRestoring, setIsRestoring] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
@@ -477,7 +506,7 @@ export function Settings() {
             <h1 className="text-3xl font-bold text-foreground">Settings</h1>
             <p className="text-muted-foreground mt-1">Manage your account and system data</p>
           </div>
-          <img src={shopLogo} alt="BIG BOSS MOBILE STATION" className="w-20 h-20" />
+          <img src={logoSrc} alt={settings.shop_name} className="w-20 h-20" />
         </div>
       </div>
 
@@ -886,14 +915,17 @@ export function Settings() {
       <Card className="p-6">
         <h2 className="text-xl font-semibold mb-4 text-foreground">ℹ️ About</h2>
         <div className="space-y-2 text-sm text-muted-foreground">
-          <p className="font-semibold text-lg text-foreground">BIG BOSS MOBILE STATION</p>
+          <p className="font-semibold text-lg text-foreground">{settings.shop_name}</p>
           <p>Shop Management System v1.0</p>
           <p>A comprehensive shop management solution for mobile phone businesses</p>
           <p className="pt-2 text-xs">
             Features: Products, Categories, POS, Customers, Suppliers, Purchase Orders, Reports, Backup & Restore
           </p>
         </div>
-        </Card>
+      </Card>
+
+      {/* Hidden Branding Settings - unlocked by typing 331548 */}
+      {showBranding && isAdmin && <BrandingSettings />}
       </div>
     </div>
   );

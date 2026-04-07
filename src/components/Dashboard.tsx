@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import shopLogo from "@/assets/big-boss-logo.png";
+import { useShopSettings } from "@/hooks/useShopSettings";
 import { MobileDashboardWidget } from "./MobileDashboardWidget";
 
 interface DashboardProps {
@@ -11,6 +11,8 @@ interface DashboardProps {
 }
 
 export function Dashboard({ onNavigateToPOS, onNavigateToProducts }: DashboardProps = {}) {
+  const { settings, logoSrc } = useShopSettings();
+
   const { data: products, isLoading: productsLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
@@ -36,18 +38,15 @@ export function Dashboard({ onNavigateToPOS, onNavigateToProducts }: DashboardPr
     new Date(s.created_at).toDateString() === new Date().toDateString()
   ).length || 0;
 
-  // Calculate new and used mobile statistics
   const newProducts = products?.filter(p => p.condition === 'new').length || 0;
   const usedProducts = products?.filter(p => p.condition === 'used').length || 0;
   const newProductsStock = products?.filter(p => p.condition === 'new').reduce((sum, p) => sum + p.stock_quantity, 0) || 0;
   const usedProductsStock = products?.filter(p => p.condition === 'used').reduce((sum, p) => sum + p.stock_quantity, 0) || 0;
   
-  // Calculate investment (cost * stock_quantity)
   const newProductsInvestment = products?.filter(p => p.condition === 'new').reduce((sum, p) => sum + (Number(p.cost) * p.stock_quantity), 0) || 0;
   const usedProductsInvestment = products?.filter(p => p.condition === 'used').reduce((sum, p) => sum + (Number(p.cost) * p.stock_quantity), 0) || 0;
   const totalInvestment = newProductsInvestment + usedProductsInvestment;
   
-  // Calculate sales by condition
   let newSalesRevenue = 0;
   let usedSalesRevenue = 0;
   let newSalesCount = 0;
@@ -75,7 +74,6 @@ export function Dashboard({ onNavigateToPOS, onNavigateToProducts }: DashboardPr
 
   const isLoading = productsLoading || salesLoading;
 
-  // Loading skeleton component
   const LoadingSkeleton = () => (
     <div className="flex flex-col h-screen animate-fade-in">
       <div className="sticky top-0 z-10 bg-white dark:bg-gray-950 border-b border-border pb-4">
@@ -122,20 +120,17 @@ export function Dashboard({ onNavigateToPOS, onNavigateToProducts }: DashboardPr
 
   return (
     <div className="flex flex-col h-screen animate-fade-in">
-      {/* Fixed Header */}
       <div className="sticky top-0 z-10 bg-white dark:bg-gray-950 border-b border-border pb-4">
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-3xl font-bold text-foreground">ড্যাশবোর্ড</h1>
             <p className="text-muted-foreground mt-1">স্বাগতম! আপনার ব্যবসার সারসংক্ষেপ দেখুন।</p>
           </div>
-          <img src={shopLogo} alt="BIG BOSS MOBILE STATION" className="w-20 h-20" />
+          <img src={logoSrc} alt={settings.shop_name} className="w-20 h-20" />
         </div>
       </div>
 
-      {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto pb-6 space-y-6">
-        {/* Mobile Dashboard Widget */}
         <MobileDashboardWidget 
           onNavigateToPOS={onNavigateToPOS}
           onNavigateToProducts={onNavigateToProducts}
@@ -170,7 +165,6 @@ export function Dashboard({ onNavigateToPOS, onNavigateToProducts }: DashboardPr
         </Card>
       )}
 
-      {/* Investment Analysis Section */}
       <Card className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 border-purple-200">
         <h2 className="text-xl font-semibold mb-6 text-foreground flex items-center">
           <span className="text-2xl mr-2">💰</span>
@@ -205,7 +199,6 @@ export function Dashboard({ onNavigateToPOS, onNavigateToProducts }: DashboardPr
           </Card>
         </div>
         
-        {/* Investment Breakdown Percentage */}
         <div className="mt-6 grid grid-cols-2 gap-4">
           <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
             <p className="text-sm text-muted-foreground mb-1">নতুন প্রোডাক্ট শেয়ার</p>
@@ -239,11 +232,9 @@ export function Dashboard({ onNavigateToPOS, onNavigateToProducts }: DashboardPr
         </div>
       </Card>
 
-      {/* 360 Degree Report - New vs Used Mobiles */}
       <Card className="p-6">
         <h2 className="text-xl font-semibold mb-6 text-foreground">প্রোডাক্ট অবস্থা বিশ্লেষণ</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* New Products Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-3 h-3 rounded-full bg-green-500"></div>
@@ -269,7 +260,6 @@ export function Dashboard({ onNavigateToPOS, onNavigateToProducts }: DashboardPr
             </div>
           </div>
 
-          {/* Used Products Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-3 h-3 rounded-full bg-blue-500"></div>

@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { Button } from "@/components/ui/button";
+import { useShopSettings } from "@/hooks/useShopSettings";
 
 interface InvoiceModalProps {
   isOpen: boolean;
@@ -9,6 +10,7 @@ interface InvoiceModalProps {
 }
 
 export function InvoiceModal({ isOpen, sale, onClose }: InvoiceModalProps) {
+  const { settings } = useShopSettings();
   const componentRef = useRef<HTMLDivElement>(null);
 
   const handlePrint = useReactToPrint({
@@ -50,9 +52,10 @@ export function InvoiceModal({ isOpen, sale, onClose }: InvoiceModalProps) {
         <div ref={componentRef} className="p-8">
           {/* Company Header */}
           <div className="text-center mb-8 border-b pb-4">
-            <h1 className="text-3xl font-bold text-primary mb-2">👑 BIG BOSS MOBILE STATION</h1>
-            <p className="text-sm text-muted-foreground">মোবাইল শপ ম্যানেজমেন্ট সিস্টেম</p>
-            <p className="text-xs text-muted-foreground mt-1">ঠিকানা: আপনার দোকানের ঠিকানা</p>
+            <h1 className="text-3xl font-bold text-primary mb-2">👑 {settings.shop_name}</h1>
+            <p className="text-sm text-muted-foreground">{settings.shop_subtitle || "মোবাইল শপ ম্যানেজমেন্ট সিস্টেম"}</p>
+            <p className="text-xs text-muted-foreground mt-1">ঠিকানা: {settings.shop_address || "আপনার দোকানের ঠিকানা"}</p>
+            {settings.shop_phone && <p className="text-xs text-muted-foreground">ফোন: {settings.shop_phone}</p>}
           </div>
 
           {/* Invoice Details */}
@@ -117,7 +120,7 @@ export function InvoiceModal({ isOpen, sale, onClose }: InvoiceModalProps) {
           {/* Footer */}
           <div className="text-center border-t pt-4 text-sm text-muted-foreground">
             <p>ধন্যবাদ আপনার ক্রয়ের জন্য!</p>
-            <p className="mt-2">BIG BOSS MOBILE STATION - আপনার বিশ্বস্ত মোবাইল শপ</p>
+            <p className="mt-2">{settings.shop_name} - আপনার বিশ্বস্ত মোবাইল শপ</p>
           </div>
         </div>
       </div>

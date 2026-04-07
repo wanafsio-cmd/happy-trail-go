@@ -9,7 +9,7 @@ import type { User } from "@supabase/supabase-js";
 import Auth from "./pages/Auth";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import shopLogo from "@/assets/big-boss-logo.png";
+import defaultLogo from "@/assets/334aa3a3-8497-400f-b941-84bfec2d732e.png";
 
 const queryClient = new QueryClient();
 
@@ -18,7 +18,6 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setUser(session?.user ?? null);
@@ -26,7 +25,6 @@ const App = () => {
       }
     );
 
-    // Check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
       setLoading(false);
@@ -35,14 +33,29 @@ const App = () => {
     return () => subscription.unsubscribe();
   }, []);
 
+  // Apply dynamic favicon from shop settings
+  useEffect(() => {
+    supabase
+      .from("shop_settings")
+      .select("favicon_url")
+      .limit(1)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (data?.favicon_url) {
+          const link = document.querySelector("link[rel='icon']") as HTMLLinkElement;
+          if (link) link.href = data.favicon_url;
+        }
+      });
+  }, []);
+
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-primary">
         <div className="text-center">
           <div className="inline-flex items-center justify-center w-32 h-32 rounded-2xl mb-4 animate-pulse shadow-xl">
-            <img src={shopLogo} alt="BIG BOSS MOBILE STATION" className="w-28 h-28 animate-scale-in" />
+            <img src={defaultLogo} alt="BIG BOSS MOBILE SHOP" className="w-28 h-28 animate-scale-in" />
           </div>
-          <h2 className="text-2xl font-bold text-white mb-2">BIG BOSS MOBILE STATION</h2>
+          <h2 className="text-2xl font-bold text-white mb-2">BIG BOSS MOBILE SHOP</h2>
           <p className="text-white/70">Loading...</p>
         </div>
       </div>
