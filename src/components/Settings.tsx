@@ -482,7 +482,7 @@ export function Settings() {
             <h1 className="text-3xl font-bold text-foreground">Settings</h1>
             <p className="text-muted-foreground mt-1">Manage your account and system data</p>
           </div>
-          <img src={shopLogo} alt="BIG BOSS MOBILE STATION" className="w-20 h-20" />
+          <img src={logoSrc} alt={settings.shop_name} className="w-20 h-20" />
         </div>
       </div>
 
