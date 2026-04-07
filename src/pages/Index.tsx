@@ -222,11 +222,11 @@ export default function Index({ user }: IndexProps) {
         <div className="flex items-center justify-between h-16 px-4">
           <div className="flex items-center space-x-3">
             <div className="w-14 h-14 rounded-xl flex items-center justify-center animate-fade-in">
-              <img src={shopLogo} alt="BIG BOSS MOBILE STATION" className="w-12 h-12 animate-scale-in" />
+              <img src={logoSrc} alt={settings.shop_name} className="w-12 h-12 animate-scale-in" />
             </div>
             <div>
-              <span className="text-base font-bold text-white block leading-tight">BIG BOSS</span>
-              <span className="text-xs text-white/70">Mobile Station</span>
+              <span className="text-base font-bold text-white block leading-tight">{settings.shop_name.split(' ').slice(0, 2).join(' ')}</span>
+              <span className="text-xs text-white/70">{settings.shop_subtitle}</span>
             </div>
           </div>
           <Button
