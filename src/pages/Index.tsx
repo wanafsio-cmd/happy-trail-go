@@ -39,6 +39,7 @@ export default function Index({ user }: IndexProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { role, permissions, loading: roleLoading } = useUserRole();
+  const { settings, logoSrc } = useShopSettings();
 
   useEffect(() => {
     if (!user) {
