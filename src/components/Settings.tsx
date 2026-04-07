@@ -32,6 +32,10 @@ import {
 
 export function Settings() {
   const navigate = useNavigate();
+  const { settings, logoSrc } = useShopSettings();
+  const { isAdmin } = useUserRole();
+  const [showBranding, setShowBranding] = useState(false);
+  const [secretBuffer, setSecretBuffer] = useState("");
   const [isBackingUp, setIsBackingUp] = useState(false);
   const [isRestoring, setIsRestoring] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
