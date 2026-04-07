@@ -486,6 +486,42 @@ export type Database = {
           },
         ]
       }
+      shop_settings: {
+        Row: {
+          created_at: string
+          favicon_url: string | null
+          id: string
+          logo_url: string | null
+          shop_address: string | null
+          shop_name: string
+          shop_phone: string | null
+          shop_subtitle: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          favicon_url?: string | null
+          id?: string
+          logo_url?: string | null
+          shop_address?: string | null
+          shop_name?: string
+          shop_phone?: string | null
+          shop_subtitle?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          favicon_url?: string | null
+          id?: string
+          logo_url?: string | null
+          shop_address?: string | null
+          shop_name?: string
+          shop_phone?: string | null
+          shop_subtitle?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       suppliers: {
         Row: {
           address: string | null
