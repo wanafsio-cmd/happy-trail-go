@@ -15,7 +15,7 @@ export interface ShopSettings {
 const DEFAULT_SETTINGS: ShopSettings = {
   id: "",
   shop_name: "BIG BOSS MOBILE SHOP",
-  shop_subtitle: "Mobile Shop",
+  shop_subtitle: "Sales & Inventory Management System",
   shop_address: "Goli No-6, Shop No-13, New Market, Karanihat, Satkania, Chittagong",
   shop_phone: "",
   logo_url: "",
