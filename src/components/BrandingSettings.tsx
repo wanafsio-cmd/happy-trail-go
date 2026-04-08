@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,20 +14,24 @@ export function BrandingSettings() {
   const [shopPhone, setShopPhone] = useState("");
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
-  const [initialized, setInitialized] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const faviconInputRef = useRef<HTMLInputElement>(null);
 
-  // Initialize form values from settings
-  if (settings && !initialized) {
-    setShopName(settings.shop_name);
-    setShopSubtitle(settings.shop_subtitle || "");
-    setShopAddress(settings.shop_address || "");
-    setShopPhone(settings.shop_phone || "");
-    setInitialized(true);
-  }
+  // Initialize form values from settings using useEffect
+  useEffect(() => {
+    if (settings && settings.id) {
+      setShopName(settings.shop_name || "");
+      setShopSubtitle(settings.shop_subtitle || "");
+      setShopAddress(settings.shop_address || "");
+      setShopPhone(settings.shop_phone || "");
+    }
+  }, [settings?.id]);
 
   const handleSave = async () => {
+    if (!settings.id) {
+      toast.error("সেটিংস লোড হয়নি, অনুগ্রহ করে পেজ রিফ্রেশ করুন।");
+      return;
+    }
     setSaving(true);
     try {
       const { error } = await supabase
@@ -53,6 +57,10 @@ export function BrandingSettings() {
   const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    if (!settings.id) {
+      toast.error("সেটিংস লোড হয়নি।");
+      return;
+    }
 
     setUploading(true);
     try {
@@ -89,6 +97,10 @@ export function BrandingSettings() {
   const handleFaviconUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    if (!settings.id) {
+      toast.error("সেটিংস লোড হয়নি।");
+      return;
+    }
 
     setUploading(true);
     try {
