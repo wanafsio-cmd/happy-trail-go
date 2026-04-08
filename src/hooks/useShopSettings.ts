@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import defaultLogo from "@/assets/334aa3a3-8497-400f-b941-84bfec2d732e.png";
+import defaultLogo from "@/assets/5bf2a98c-7ea0-4b15-942b-35dafadd1457.png";
 
 export interface ShopSettings {
   id: string;
