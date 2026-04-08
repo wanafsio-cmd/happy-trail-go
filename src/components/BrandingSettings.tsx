@@ -174,7 +174,7 @@ export function BrandingSettings() {
           </div>
           <div>
             <label className="block text-sm font-medium text-foreground mb-1">সাবটাইটেল</label>
-            <Input value={shopSubtitle} onChange={(e) => setShopSubtitle(e.target.value)} placeholder="Mobile Shop" />
+            <Input value={shopSubtitle} onChange={(e) => setShopSubtitle(e.target.value)} placeholder="Sales & Inventory Management System" />
           </div>
           <div className="md:col-span-2">
             <label className="block text-sm font-medium text-foreground mb-1">ঠিকানা</label>
