@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Customer } from "./types";
 
@@ -12,6 +14,10 @@ interface PaymentSectionProps {
   cartEmpty: boolean;
   isProcessing: boolean;
   onCompleteSale: () => void;
+  instantCustomerName: string;
+  onInstantCustomerNameChange: (name: string) => void;
+  instantCustomerPhone: string;
+  onInstantCustomerPhoneChange: (phone: string) => void;
 }
 
 export function PaymentSection({
@@ -24,25 +30,75 @@ export function PaymentSection({
   cartEmpty,
   isProcessing,
   onCompleteSale,
+  instantCustomerName,
+  onInstantCustomerNameChange,
+  instantCustomerPhone,
+  onInstantCustomerPhoneChange,
 }: PaymentSectionProps) {
+  const [useInstantCustomer, setUseInstantCustomer] = useState(false);
+
   return (
     <div className="space-y-3 lg:space-y-4 pt-4 border-t border-border">
       <div>
         <label className="block text-xs lg:text-sm font-medium mb-2 text-foreground">
           কাস্টমার (ঐচ্ছিক)
         </label>
-        <Select value={selectedCustomer} onValueChange={onCustomerChange}>
+        <Select
+          value={selectedCustomer}
+          onValueChange={(val) => {
+            onCustomerChange(val);
+            if (val) setUseInstantCustomer(false);
+          }}
+          disabled={useInstantCustomer}
+        >
           <SelectTrigger className="h-9">
             <SelectValue placeholder="কাস্টমার নির্বাচন করুন" />
           </SelectTrigger>
           <SelectContent>
             {customers?.map((customer) => (
               <SelectItem key={customer.id} value={customer.id}>
-                {customer.name}
+                {customer.name} {customer.phone ? `(${customer.phone})` : ""}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
+      </div>
+
+      {/* Instant Customer Toggle */}
+      <div>
+        <button
+          type="button"
+          className="text-xs text-primary underline mb-2"
+          onClick={() => {
+            setUseInstantCustomer(!useInstantCustomer);
+            if (!useInstantCustomer) {
+              onCustomerChange("");
+            } else {
+              onInstantCustomerNameChange("");
+              onInstantCustomerPhoneChange("");
+            }
+          }}
+        >
+          {useInstantCustomer ? "❌ ইন্সট্যান্ট কাস্টমার বাদ দিন" : "➕ ইন্সট্যান্ট কাস্টমার যুক্ত করুন"}
+        </button>
+
+        {useInstantCustomer && (
+          <div className="space-y-2 p-3 rounded-lg bg-muted/50 border border-border">
+            <Input
+              placeholder="কাস্টমারের নাম"
+              value={instantCustomerName}
+              onChange={(e) => onInstantCustomerNameChange(e.target.value)}
+              className="h-8 text-sm"
+            />
+            <Input
+              placeholder="মোবাইল নম্বর"
+              value={instantCustomerPhone}
+              onChange={(e) => onInstantCustomerPhoneChange(e.target.value)}
+              className="h-8 text-sm"
+              type="tel"
+            />
+          </div>
+        )}
       </div>
 
       <div>

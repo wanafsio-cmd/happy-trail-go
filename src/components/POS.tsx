@@ -26,6 +26,8 @@ export function POS() {
   const [showOutOfStock, setShowOutOfStock] = useState(false);
   const [isCartCollapsed, setIsCartCollapsed] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [instantCustomerName, setInstantCustomerName] = useState("");
+  const [instantCustomerPhone, setInstantCustomerPhone] = useState("");
 
   const queryClient = useQueryClient();
 
@@ -110,6 +112,17 @@ export function POS() {
         .eq("id", sale.id)
         .single();
 
+      // Attach instant customer info if no registered customer was selected
+      if (!saleData.customer_id && saleData.instant_customer_name) {
+        return {
+          ...fullSale,
+          instant_customer: {
+            name: saleData.instant_customer_name,
+            phone: saleData.instant_customer_phone,
+          },
+        };
+      }
+
       return fullSale;
     },
     onSuccess: (sale) => {
@@ -125,6 +138,8 @@ export function POS() {
       setCart([]);
       setSelectedCustomer("");
       setPaymentMethod("cash");
+      setInstantCustomerName("");
+      setInstantCustomerPhone("");
     },
     onError: (error: any) => {
       toast.error(error.message || "বিক্রয় সম্পন্ন করতে ব্যর্থ");
@@ -200,6 +215,8 @@ export function POS() {
       customer_id: selectedCustomer || null,
       total_amount: getTotal(),
       payment_method: paymentMethod,
+      instant_customer_name: instantCustomerName || null,
+      instant_customer_phone: instantCustomerPhone || null,
       items: cart.map(item => ({
         product_id: item.product.id,
         quantity: item.quantity,
@@ -289,6 +306,10 @@ export function POS() {
                 cartEmpty={cart.length === 0}
                 isProcessing={completeSaleMutation.isPending}
                 onCompleteSale={handleCompleteSaleClick}
+                instantCustomerName={instantCustomerName}
+                onInstantCustomerNameChange={setInstantCustomerName}
+                instantCustomerPhone={instantCustomerPhone}
+                onInstantCustomerPhoneChange={setInstantCustomerPhone}
               />
             </div>
           </div>

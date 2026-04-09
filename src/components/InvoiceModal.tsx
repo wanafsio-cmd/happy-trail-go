@@ -62,9 +62,13 @@ export function InvoiceModal({ isOpen, sale, onClose }: InvoiceModalProps) {
           <div className="grid grid-cols-2 gap-4 mb-6">
             <div>
               <h3 className="font-semibold text-sm text-muted-foreground mb-2">ক্রেতা:</h3>
-              <p className="font-medium">{sale.customers?.name || "সাধারণ ক্রেতা"}</p>
-              {sale.customers?.phone && <p className="text-sm">{sale.customers.phone}</p>}
-              {sale.customers?.email && <p className="text-sm">{sale.customers.email}</p>}
+              <p className="font-medium">
+                {sale.customers?.name || sale.instant_customer?.name || "সাধারণ ক্রেতা"}
+              </p>
+              {(sale.customers?.phone || sale.instant_customer?.phone) && (
+                <p className="text-sm">📞 {sale.customers?.phone || sale.instant_customer?.phone}</p>
+              )}
+              {sale.customers?.email && <p className="text-sm">📧 {sale.customers.email}</p>}
             </div>
             <div className="text-right">
               <p className="text-sm"><span className="font-semibold">ইনভয়েস #:</span> {sale.id.slice(0, 8)}</p>
