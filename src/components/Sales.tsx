@@ -526,7 +526,7 @@ export function Sales() {
               </div>
 
               {/* Customer Info */}
-              {(selectedSale.customers || (selectedSale as any).instant_customer_name) && (
+              {(selectedSale.customers || selectedSale.instant_customer_name) && (
                 <Card>
                   <CardHeader className="p-3 md:p-6">
                     <CardTitle className="text-base md:text-lg flex items-center gap-2">
@@ -538,14 +538,14 @@ export function Sales() {
                     <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0">
                       <span className="text-xs md:text-sm text-muted-foreground">Name:</span>
                       <span className="text-sm md:text-base font-semibold">
-                        {selectedSale.customers?.name || (selectedSale as any).instant_customer_name}
+                        {selectedSale.customers?.name || selectedSale.instant_customer_name}
                       </span>
                     </div>
-                    {(selectedSale.customers?.phone || (selectedSale as any).instant_customer_phone) && (
+                    {(selectedSale.customers?.phone || selectedSale.instant_customer_phone) && (
                       <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0">
                         <span className="text-xs md:text-sm text-muted-foreground">Phone:</span>
                         <span className="text-sm md:text-base">
-                          {selectedSale.customers?.phone || (selectedSale as any).instant_customer_phone}
+                          {selectedSale.customers?.phone || selectedSale.instant_customer_phone}
                         </span>
                       </div>
                     )}
