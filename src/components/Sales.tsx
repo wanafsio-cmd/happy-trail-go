@@ -21,6 +21,8 @@ interface SaleDetail {
   status: string;
   notes: string | null;
   customer_id: string | null;
+  instant_customer_name: string | null;
+  instant_customer_phone: string | null;
   customers: {
     name: string;
     phone: string | null;
