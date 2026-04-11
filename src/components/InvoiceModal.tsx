@@ -63,10 +63,10 @@ export function InvoiceModal({ isOpen, sale, onClose }: InvoiceModalProps) {
             <div>
               <h3 className="font-semibold text-sm text-muted-foreground mb-2">ক্রেতা:</h3>
               <p className="font-medium">
-                {sale.customers?.name || sale.instant_customer?.name || "সাধারণ ক্রেতা"}
+                {sale.customers?.name || sale.instant_customer_name || "সাধারণ ক্রেতা"}
               </p>
-              {(sale.customers?.phone || sale.instant_customer?.phone) && (
-                <p className="text-sm">📞 {sale.customers?.phone || sale.instant_customer?.phone}</p>
+              {(sale.customers?.phone || sale.instant_customer_phone) && (
+                <p className="text-sm">📞 {sale.customers?.phone || sale.instant_customer_phone}</p>
               )}
               {sale.customers?.email && <p className="text-sm">📧 {sale.customers.email}</p>}
             </div>

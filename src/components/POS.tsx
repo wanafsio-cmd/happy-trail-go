@@ -62,6 +62,8 @@ export function POS() {
           total_amount: saleData.total_amount,
           payment_method: saleData.payment_method,
           status: "completed",
+          instant_customer_name: saleData.instant_customer_name,
+          instant_customer_phone: saleData.instant_customer_phone,
         }])
         .select("*, customers(*)")
         .single();
@@ -112,17 +114,6 @@ export function POS() {
         .eq("id", sale.id)
         .single();
 
-      // Attach instant customer info if no registered customer was selected
-      if (!saleData.customer_id && saleData.instant_customer_name) {
-        return {
-          ...fullSale,
-          instant_customer: {
-            name: saleData.instant_customer_name,
-            phone: saleData.instant_customer_phone,
-          },
-        };
-      }
-
       return fullSale;
     },
     onSuccess: (sale) => {
@@ -149,14 +140,10 @@ export function POS() {
   const addToCart = (product: Product) => {
     const existingItem = cart.find(item => item.product.id === product.id);
     if (existingItem) {
-      setCart(cart.map(item =>
-        item.product.id === product.id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      ));
-    } else {
-      setCart([...cart, { product, quantity: 1, customPrice: Number(product.price) }]);
+      toast.error(`${product.name} ইতিমধ্যে কার্টে আছে`);
+      return;
     }
+    setCart([...cart, { product, quantity: 1, customPrice: Number(product.price) }]);
     toast.success(`${product.name} কার্টে যোগ হয়েছে`);
   };
 
@@ -211,6 +198,11 @@ export function POS() {
   };
 
   const confirmSale = () => {
+    if (getTotal() <= 0) {
+      toast.error("বিক্রয় মূল্য ০ হতে পারে না");
+      return;
+    }
+
     const saleData = {
       customer_id: selectedCustomer || null,
       total_amount: getTotal(),
