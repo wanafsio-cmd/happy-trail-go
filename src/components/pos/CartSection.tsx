@@ -56,23 +56,7 @@ export function CartSection({
                     </div>
                   </div>
                   <div className="flex items-center gap-1 lg:gap-2 flex-shrink-0">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => onUpdateQuantity(item.product.id, item.quantity - 1)}
-                      className="h-7 w-7 p-0 text-xs"
-                    >
-                      -
-                    </Button>
-                    <span className="w-6 lg:w-8 text-center font-semibold text-sm">{item.quantity}</span>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => onUpdateQuantity(item.product.id, item.quantity + 1)}
-                      className="h-7 w-7 p-0 text-xs"
-                    >
-                      +
-                    </Button>
+                    <span className="w-6 lg:w-8 text-center font-semibold text-sm">1</span>
                     <Button
                       size="sm"
                       variant="destructive"
