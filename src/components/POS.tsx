@@ -114,17 +114,6 @@ export function POS() {
         .eq("id", sale.id)
         .single();
 
-      // Attach instant customer info if no registered customer was selected
-      if (!saleData.customer_id && saleData.instant_customer_name) {
-        return {
-          ...fullSale,
-          instant_customer: {
-            name: saleData.instant_customer_name,
-            phone: saleData.instant_customer_phone,
-          },
-        };
-      }
-
       return fullSale;
     },
     onSuccess: (sale) => {
