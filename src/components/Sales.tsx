@@ -419,10 +419,10 @@ export function Sales() {
                           <span className="hidden sm:inline">{format(new Date(sale.created_at), "dd MMM yyyy, hh:mm a")}</span>
                           <span className="sm:hidden">{format(new Date(sale.created_at), "dd MMM yyyy")}</span>
                         </div>
-                        {sale.customers && (
+                        {(sale.customers || sale.instant_customer_name) && (
                           <div className="flex items-center gap-1">
                             <User className="h-3 w-3 md:h-3.5 md:w-3.5" />
-                            {sale.customers.name}
+                            {sale.customers?.name || sale.instant_customer_name}
                           </div>
                         )}
                         <div className="flex items-center gap-1">
@@ -524,7 +524,7 @@ export function Sales() {
               </div>
 
               {/* Customer Info */}
-              {selectedSale.customers && (
+              {(selectedSale.customers || (selectedSale as any).instant_customer_name) && (
                 <Card>
                   <CardHeader className="p-3 md:p-6">
                     <CardTitle className="text-base md:text-lg flex items-center gap-2">
@@ -535,15 +535,19 @@ export function Sales() {
                   <CardContent className="space-y-2 p-3 md:p-6 pt-0">
                     <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0">
                       <span className="text-xs md:text-sm text-muted-foreground">Name:</span>
-                      <span className="text-sm md:text-base font-semibold">{selectedSale.customers.name}</span>
+                      <span className="text-sm md:text-base font-semibold">
+                        {selectedSale.customers?.name || (selectedSale as any).instant_customer_name}
+                      </span>
                     </div>
-                    {selectedSale.customers.phone && (
+                    {(selectedSale.customers?.phone || (selectedSale as any).instant_customer_phone) && (
                       <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0">
                         <span className="text-xs md:text-sm text-muted-foreground">Phone:</span>
-                        <span className="text-sm md:text-base">{selectedSale.customers.phone}</span>
+                        <span className="text-sm md:text-base">
+                          {selectedSale.customers?.phone || (selectedSale as any).instant_customer_phone}
+                        </span>
                       </div>
                     )}
-                    {selectedSale.customers.email && (
+                    {selectedSale.customers?.email && (
                       <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0">
                         <span className="text-xs md:text-sm text-muted-foreground">Email:</span>
                         <span className="text-sm md:text-base">{selectedSale.customers.email}</span>
