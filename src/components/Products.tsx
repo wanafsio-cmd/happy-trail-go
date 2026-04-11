@@ -175,13 +175,20 @@ export function Products() {
       return;
     }
 
-    // Check for duplicate IMEI if adding new product
-    if (!editingProduct && formData.imei) {
-      const { data: existingProducts, error } = await supabase
+    // Check for duplicate IMEI (both add and edit)
+    if (formData.imei) {
+      let query = supabase
         .from("products")
         .select("id, name, stock_quantity")
         .eq("imei", formData.imei)
         .gt("stock_quantity", 0);
+
+      // When editing, exclude the current product from the check
+      if (editingProduct) {
+        query = query.neq("id", editingProduct.id);
+      }
+
+      const { data: existingProducts, error } = await query;
 
       if (error) {
         toast.error("IMEI চেক করতে ব্যর্থ");
@@ -189,7 +196,7 @@ export function Products() {
       }
 
       if (existingProducts && existingProducts.length > 0) {
-        toast.error(`এই IMEI (${formData.imei}) দিয়ে একটি মোবাইল ইতিমধ্যে স্টকে আছে। আগে বিক্রি করুন, তারপর আবার এন্ট্রি করতে পারবেন।`);
+        toast.error(`এই IMEI (${formData.imei}) দিয়ে "${existingProducts[0].name}" ইতিমধ্যে স্টকে আছে। আগে বিক্রি করুন, তারপর আবার এন্ট্রি করতে পারবেন।`);
         return;
       }
     }
